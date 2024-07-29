@@ -1,2 +1,1 @@
-# chuut
-This is my first github chut repository
+TEAM : Kannan,s Coders
