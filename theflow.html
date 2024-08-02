@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="theflowstyle1.css">
+</head>
+<body>
+    <div class="thescript">
+        <div class="head"><h1>The Script</h1></div>
+        <div class="down">
+            <h4>User Action: File Upload</h4>
+            <p>The user selects a file and clicks the "Upload and Train" button.</p>
+            <h4>Client-Side Processing</h4>
+            <ul>
+                <li> The JavaScript function uploadData() is triggered.</li>
+                <li>The selected file is appended to a FormData object.</li>
+                <li>A POST request is sent to the /upload endpoint with the file data.</li>
+            </ul>
+            <h4>Server-Side Processing (File Upload)</h4>
+            <ul>
+                <li>The server receives the file data from the /upload endpoint.</li>
+                <li>The server processes the file, which involves training a machine learning model using the data from the file.</li>
+                <li>The server generates a response containing training results, including model accuracy and details.</li>
+            </ul>
+
+            <h4>Client-Side Update (File Upload)</h4>
+            <ul>
+                <li>The client receives the server response with the training results.</li>
+                <li>The JavaScript code updates the HTML to display the training results in the results div.</li>
+            </ul>  
+                
+                
+            <h4>User Action: Ask a Question</h4>
+            <ul><li>The user enters a question and clicks the "Submit Question" button.</li></ul>  
+                
+            <h4>Client-Side Processing</h4>
+            <ul>
+                <li>The JavaScript function askQuestion() is triggered.</li>
+                <li>The input question is trimmed and sent as a JSON object in a POST request to the /ask endpoint.</li>
+            </ul>  
+                
+                
+            <h4>Server-Side Processing (Ask a Question)</h4>
+            <ul>
+                <li>The server receives the question from the /ask endpoint.</li>
+                <li>The server processes the question (e.g., by querying the trained model or a database).</li>
+                <li>The server generates a response containing the answer to the question.</li>
+            </ul>    
+            <h4>Client-Side Update (Ask a Question)</h4>
+            <ul>
+                <li>The client receives the server response with the answer.</li>
+                <li>The JavaScript code updates the HTML to display the answer in the question-results div.</li>
+            </ul>
+            Here's a <a href="theflowflowchart.html" target="_blank">flowchart</a> representing this process:
+        </div>
+    </div>
+    
+</body>
+</html>

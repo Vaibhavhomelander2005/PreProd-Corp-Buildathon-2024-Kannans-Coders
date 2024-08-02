@@ -1,0 +1,9 @@
+img{
+    width: 180vh;
+    height: 100vh;
+}
+
+.menu{
+    display: flex;
+    justify-content: space-around;
+}

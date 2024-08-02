@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoML Web Interface</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="flowchart.html" target=”_blank”><h1>AUTOML Data Upload</h1></a>
+        <input type="file" id="data-file" accept=".csv,.json" />
+        <button onclick="uploadData()">Upload and Train</button>
+        <div id="results"></div>
+        <div id="question-section">
+            <h2>Ask a Question</h2>
+            <input type="text" id="question-input" placeholder="Enter your question" />
+            <button onclick="askQuestion()">Submit Question</button>
+            <div id="question-results"></div>
+        </div>
+    </div>
+
+    <script>
+        function uploadData() {
+            const fileInput = document.getElementById('data-file');
+            if (fileInput.files.length === 0) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = `<h2>Training Results</h2>
+                                        <p>Model accuracy: ${data.accuracy}</p>
+                                        <p>Model details: ${data.details}</p>`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function askQuestion() {
+            const questionInput = document.getElementById('question-input');
+            const question = questionInput.value.trim();
+            if (!question) {
+                alert('Please enter a question.');
+                return;
+            }
+
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ question: question })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const questionResultsDiv = document.getElementById('question-results');
+                questionResultsDiv.innerHTML = `<h2>Answer</h2>
+                                                  <p>${data.answer}</p>`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
